@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 base_url = 'https://statiz.sporki.com/schedule/?m=gamelogs&s_no='
 
 # 페이지 범위 설정 (1~5페이지까지 크롤링)
-for page_num in range(20241457, 20241459):
+for page_num in range(20241456, 20241459):
     # 각 페이지의 URL 생성
     url = base_url + str(page_num)
     
