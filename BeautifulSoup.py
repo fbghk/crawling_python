@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import time
+import csv
+import json
+import sqlite3
 
 # ChromeDriver 설정
 chrome_driver_path = r'C:\Users\Administrator\Downloads\chromedriver-win64\chromedriver.exe'
@@ -19,6 +22,27 @@ driver = webdriver.Chrome(service=service, options=options)
 # s_no 값을 시작하는 숫자로 설정
 s_no = 20241425  # 첫 번째 페이지의 s_no 값
 
+# CSV 파일 생성 및 헤더 작성
+csv_file = open('data.csv', mode='w', newline='', encoding='utf-8')
+csv_writer = csv.writer(csv_file)
+csv_writer.writerow(['페이지', '데이터'])  # 헤더 작성
+
+# JSON 파일에 데이터를 저장할 리스트
+json_data = []
+
+# SQLite 데이터베이스 연결
+conn = sqlite3.connect('data.db')
+cursor = conn.cursor()
+
+# 테이블 생성
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS data (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    페이지 TEXT,
+    데이터 TEXT
+)
+''')
+
 while True:
     try:
         # A 버튼의 href URL을 동적으로 생성하여 페이지로 이동
@@ -27,21 +51,21 @@ while True:
         print(f"현재 페이지: {url}")
         time.sleep(2)
 
-        # # B 버튼 클릭
-        # b_button = driver.find_element(By.LINK_TEXT, '경기로그')  # B 버튼의 텍스트로 찾기
-        # b_button.click()
-        # time.sleep(2)  # 페이지가 로드될 때까지 대기
-
         # 데이터 수집 (예: <div class="table_type03"> 태그의 내용 수집)
         items = driver.find_elements(By.CLASS_NAME, 'table_type03')
+        page_data = ""
         for item in items:
+            page_data += item.text + "\n"
             print(item.text)
 
-        # # 뒤로가기 2번
-        # driver.back()  # 첫 번째 뒤로가기
-        # time.sleep(2)  # 페이지가 로드될 때까지 대기
-        # driver.back()  # 두 번째 뒤로가기
-        # time.sleep(2)  # 페이지가 로드될 때까지 대기
+        # 데이터를 CSV 파일에 저장
+        csv_writer.writerow([url, page_data])
+
+        # 데이터를 JSON 파일용 리스트에 저장
+        json_data.append({'페이지': url, '데이터': page_data})
+
+        # 데이터를 SQLite에 저장
+        cursor.execute('INSERT INTO data (페이지, 데이터) VALUES (?, ?)', (url, page_data))
 
         # s_no 값을 1 증가시켜 다음 페이지로 이동
         s_no += 1
@@ -54,3 +78,16 @@ while True:
 
 # 브라우저 닫기
 driver.quit()
+
+# CSV 파일 닫기
+csv_file.close()
+
+# JSON 파일로 저장
+with open('data.json', 'w', encoding='utf-8') as json_file:
+    json.dump(json_data, json_file, ensure_ascii=False, indent=4)
+
+# SQLite 데이터베이스 저장 및 닫기
+conn.commit()
+conn.close()
+
+print("데이터 저장 완료")
