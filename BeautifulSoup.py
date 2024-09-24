@@ -10,6 +10,9 @@ service = Service(executable_path=chrome_driver_path)
 options = Options()
 options.add_argument("--headless")  # 필요시 headless 모드를 사용
 
+# User-Agent를 설정하여 봇으로 인식되지 않게 함
+options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36")
+
 # 브라우저 열기
 driver = webdriver.Chrome(service=service, options=options)
 
