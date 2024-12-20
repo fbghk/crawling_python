@@ -1,0 +1,32 @@
+[
+  {
+    "awayTeam": "키움",
+    "awayScore": "2",
+    "homeTeam": "LG",
+    "homeScore": "4"
+  },
+  {
+    "awayTeam": "삼성",
+    "awayScore": "3",
+    "homeTeam": "SSG",
+    "homeScore": "7"
+  },
+  {
+    "awayTeam": "두산",
+    "awayScore": "4",
+    "homeTeam": "NC",
+    "homeScore": "3"
+  },
+  {
+    "awayTeam": "한화",
+    "awayScore": "12",
+    "homeTeam": "KT",
+    "homeScore": "2"
+  },
+  {
+    "awayTeam": "롯데",
+    "awayScore": "9",
+    "homeTeam": "KIA",
+    "homeScore": "3"
+  }
+]

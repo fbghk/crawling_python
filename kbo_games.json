@@ -1,0 +1,90 @@
+[
+  {
+    "stadium": "잠실",
+    "time": "18:30",
+    "awayTeam": "키움",
+    "awayPitcher": {
+      "name": "오석주",
+      "result": "패"
+    },
+    "homeTeam": "LG",
+    "homePitchers": [
+      {
+        "name": "김대현",
+        "result": "승"
+      },
+      {
+        "name": "유영찬",
+        "result": "세"
+      }
+    ]
+  },
+  {
+    "stadium": "문학",
+    "time": "18:30",
+    "awayTeam": "삼성",
+    "awayPitcher": {
+      "name": "레예스",
+      "result": "패"
+    },
+    "homeTeam": "SSG",
+    "homePitchers": [
+      {
+        "name": "앤더슨",
+        "result": "승"
+      },
+      {
+        "name": "문원",
+        "result": "세"
+      }
+    ]
+  },
+  {
+    "stadium": "창원",
+    "time": "18:30",
+    "awayTeam": "두산",
+    "awayPitcher": {
+      "name": "이영하",
+      "result": "승"
+    },
+    "homeTeam": "NC",
+    "homePitchers": [
+      {
+        "name": "송명기",
+        "result": "패"
+      }
+    ]
+  },
+  {
+    "stadium": "수원",
+    "time": "18:30",
+    "awayTeam": "한화",
+    "awayPitcher": {
+      "name": "김기중",
+      "result": "승"
+    },
+    "homeTeam": "KT",
+    "homePitchers": [
+      {
+        "name": "한차현",
+        "result": "패"
+      }
+    ]
+  },
+  {
+    "stadium": "광주",
+    "time": "18:30",
+    "awayTeam": "롯데",
+    "awayPitcher": {
+      "name": "한현희",
+      "result": "승"
+    },
+    "homeTeam": "KIA",
+    "homePitchers": [
+      {
+        "name": "황동하",
+        "result": "패"
+      }
+    ]
+  }
+]
